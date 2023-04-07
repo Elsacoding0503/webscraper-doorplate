@@ -37,9 +37,10 @@ time.sleep(2)
 ua = UserAgent()
 
 cookies = {
-    'JSESSIONID': '02FE1CABD99B0B16BF7862729E4CBEEA.sris-aw-info-doorplate-2',
+    'JSESSIONID': '24A51B35BA5102D798F21F1C5C441CCA.sris-aw-info-doorplate-2',
     '_ga': 'GA1.3.787644152.1680751765',
     '_gid': 'GA1.3.79966356.1680751765',
+    '_gat_gtag_UA_28221981_1': '1',
 }
 
 headers = {
@@ -80,6 +81,7 @@ response_first = rs.post(url=url_page,
                    cookies=cookies,
                    headers=headers,
                    data=data_first_page)
+print(response_first.json())
 
 # 往下一頁的token
 token = json.loads(response_first.json()['errorMsg'])['token']
