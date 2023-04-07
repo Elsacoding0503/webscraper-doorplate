@@ -17,21 +17,20 @@ print(f'captcahkey: {captcha}')
 dt_now = datetime.now()
 ts = str(int(datetime.timestamp(dt_now)*1000))
 print(f'timestamp: {ts}')
-time.sleep(2)
+time.sleep(1)
 
 # 利用captcahkey & ts 請求驗證碼
 verifypic_url = f'https://www.ris.gov.tw/info-doorplate/captcha/image?CAPTCHA_KEY={captcha}&time={ts}'
 r_pic=requests.get(verifypic_url)
 
 #將圖片下載下來確認
-# with open('verifypic','wb') as f:
-#     f.write(r_pic.content)
+with open('verifypic','wb') as f:
+    f.write(r_pic.content)
 
 ocr = ddddocr.DdddOcr()
 pic = ocr.classification(r_pic.content)
 pic_upper = str.upper(pic)
 print(f'驗證碼： {pic_upper}')
-time.sleep(2)
 
 # 先爬第一頁
 ua = UserAgent()
